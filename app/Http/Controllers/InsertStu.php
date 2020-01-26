@@ -12,4 +12,10 @@ class InsertStu extends Controller
         
         return view ('InsertSTU');
     }
+
+    protected function InsertStu(){
+
+        
+    }
+
 }
