@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 class InsertStu extends Controller
 {
-     function insertS(){
-         return view('InsertSTU');
-     }
-
+ 
+    
+    protected function viewInsertPage (){
+        
+        return view ('InsertSTU');
+    }
 }

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/barcodes','Barcode@barcode');
 
-Route::get('/insert','InsertSTU@insertS');
+Route::get('/insert','InsertStu@viewInsertPage');
 
 Auth::routes();
 
