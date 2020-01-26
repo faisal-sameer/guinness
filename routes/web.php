@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/barcodes','Barcode@barcode');
 
+Route::get('/insert','InsertStu@viewInsertPage');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
