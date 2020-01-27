@@ -17,7 +17,9 @@
 <body>
 
 <div id="sty" >
-School Name
+  <form method="POST" action="{{ route('insert') }}" enctype="multipart/form-data">
+    @csrf
+    School Name
 <input type="text"name ="school_name" > 
 
 
@@ -31,6 +33,7 @@ save
 
 
 </button>
+  </form>
 </div>
  
 
