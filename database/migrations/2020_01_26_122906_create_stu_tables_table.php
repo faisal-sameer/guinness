@@ -19,9 +19,8 @@ class CreateStuTablesTable extends Migration
             $table->Increments('id');
             $table->string('stu_name');
             $table->string('school_name');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+         //   $table->integer('user_id')->unsigned()->index();
+           // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
