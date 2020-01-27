@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Stu_tables;
+use App\StuBarcode;
 
 
 class InsertStu extends Controller
@@ -23,6 +24,15 @@ class InsertStu extends Controller
         $new->school_name = $request->school_name;
         $new->user_id = auth()->user()->id;
         $new->save();
+
+        $barcode = new StuBarcode();
+        $barcode->stu_id = $new->id;
+        $barcode->attend = 0 ;
+        $barcode->save();
+
+        return 'oh yes!';
+
+
         
     }
 
@@ -31,5 +41,15 @@ class InsertStu extends Controller
 
 
     return view ('count')->with('count',$count);
+    }
+
+    protected function changeSchoolName(){
+
+        Stu_tables::where('id','!=',-1)
+        ->update(['school_name'=>'UQU']);
+
+
+        return 'Done' ;
+
     }
 }

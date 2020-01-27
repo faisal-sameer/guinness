@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStuTablesTable extends Migration
+class CreateStuBarcodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateStuTablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('stu_tables', function (Blueprint $table) {
+        Schema::create('stu_barcodes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
+
             $table->Increments('id');
-            $table->string('stu_name');
-            $table->string('school_name');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('stu_id')->unsigned()->index();
+            $table->foreign('stu_id')->references('id')->on('stu_tables')->onDelete('cascade');
+            $table->boolean('attend');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateStuTablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stu_tables');
+        Schema::dropIfExists('stu_barcodes');
     }
 }

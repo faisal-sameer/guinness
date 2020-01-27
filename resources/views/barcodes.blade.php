@@ -26,14 +26,10 @@
     <br/>
 
 
-    <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('' , 'C93',2,22,array(1,1,1))}}" alt="barcode" />
+    <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($stu, 'C93',2,22,array(1,1,1))}}" alt="barcode" />
 
     1/1#10
     <br/> 
-
-    <br/>
-    <img src="data:image/png;base64,{{DNS1D::getBarcodePNG('abdulaziz', 'C39',2,22,array(1,1,1))}}" alt="barcode" />
-
 </div>
     
 

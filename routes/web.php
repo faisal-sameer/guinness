@@ -23,6 +23,8 @@ Route::get('/count','InsertStu@counts');
 
 Route::post('/insert','InsertStu@InsertStu')->name('insert');
 
+Route::get('/change','InsertStu@changeSchoolName');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
