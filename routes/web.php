@@ -19,6 +19,8 @@ Route::get('/barcodes','Barcode@barcode');
 
 Route::get('/insert','InsertStu@viewInsertPage');
 
+Route::get('/count','InsertStu@counts');
+
 Route::post('/insert','InsertStu@InsertStu')->name('insert');
 
 Auth::routes();

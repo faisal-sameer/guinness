@@ -26,4 +26,10 @@ class InsertStu extends Controller
         
     }
 
+    protected function counts(){
+        $count =Stu_tables::all() ;
+
+
+    return view ('count')->with('count',$count);
+    }
 }
