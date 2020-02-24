@@ -24,7 +24,13 @@ Route::get('/count','InsertStu@counts');
 Route::post('/insert','InsertStu@InsertStu')->name('insert');
 
 Route::get('/change','InsertStu@changeSchoolName');
+Route::get('/index','HomeController@show');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/puzzle','Puzzle@puzzle8');
+
+Route::get('/inputFialed','Barcode@show01');
+Route::post('/inputFialed','Barcode@inputFialed')->name('inputFialed');
