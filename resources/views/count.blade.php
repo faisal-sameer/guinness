@@ -1,72 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap 4 Carousel</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
-.main_container {
-  height: 46px;
-  width: auto;
-  padding: 3px;
-  margin-left: 40%;
-  margin-top: 10%;
-  
-  max-width: 300px;
-  background-color: #555555;
-  align-content: center;
+.carousel{
+    background: #2f4357;
+    margin-top: 20px;
 }
-.container_inner {
-  height: auto;
-  border: none;
-  background-color: #555555;
-  max-width: 290px;
-  vertical-align: center;
-  padding-top: 12px;
-  padding-left: 10px;
-  align-content: center;
+.carousel-item{
+    text-align: center;
+    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
 }
- .num_tiles {
-  width:30px;
-  height: 30px;
-  background-color: #888888;
-  color: #ffffff;
-  font-size: 22px;
-  text-align: center;
-  line-height: 20px;
-  padding: 3px;
-  margin: 1.5px;
-  font-family: verdana;
-  vertical-align: center;
+.bs-example{
+	margin: 20px;
 }
-h2{
-    margin-left:42%;
-    margin-top:7%;
-
-
-}
-
 </style>
-
-
-   </head>
+</head>
 <body>
-
-<h2 class="attend"> Number of attendees
-</h2>
-<div class="main_container" id="id_main_container">
-
-      <div class="container_inner" id="display_div_id">
-     
-<label class="num_tiles"> 
-{{$count->count()}}
-</label>
-      </div>
+<div class="bs-example">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for carousel items -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/images/kob.jpg" alt="First Slide">
+            </div>
+            <div class="carousel-item">
+                <img src="/images/kobe-bryant.png" alt="Second Slide">
+            </div>
+            <div class="carousel-item">
+                <img src="/examples/images/slide3.png" alt="Third Slide">
+            </div>
+        </div>
+        <!-- Carousel controls -->
+        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
-
-
-
-
+</div>
 </body>
-</html>
+</html>                                                        

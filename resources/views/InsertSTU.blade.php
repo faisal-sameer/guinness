@@ -1,42 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+<html>
+  <head>
     <style>
-    #sty{
-      margin-top:5%;
-  margin-left: 30%;
+      body {
+        font-family :Arial;
+      }
+      #map-layer {
+        margin: 20px 0px;
+        max-width: 600px;
+        min-height: 400;
+      }
+      #btnAction {
+        background: #3878c7;
+          padding: 10px 40px;
+          border: #3672bb 1px solid;
+          border-radius: 2px;
+          color: #FFF;
+          font-size: 0.9em;
+          cursor:pointer;
+          display:block;
+      }
+      #btnAction:disabled {
+          background: #6c99d2;
+      }
+      </style>
+  </head>
+  <body>
+    <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+      <iframe src="https://maps.google.com/maps?q=شركة+الرحلة+المباركة+لخدمة+حجاج+الداخل+والعمرة&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
 
-    } 
      
-    </style>
-</head>
-<body>
-
-<div id="sty" >
-  <form method="POST" action="{{ route('insert') }}" enctype="multipart/form-data">
-    @csrf
-    School Name
-<input type="text"name ="school_name" > 
-
-
-
-Student Name
-<input type="text"name ="student_name" >
-
-
-<button  class="btn success">
-save
-
-
-</button>
-  </form>
-</div>
- 
-
-    
-</body>
+        style="border:0" allowfullscreen></iframe>
+    </div>
+  </body>
 </html>
