@@ -35,34 +35,21 @@ class Puzzle extends Controller
 				$key = array_search(0,$mystate);// zero postion 
 				// need var for root and other for next root 
 				// and for loop for each postion to search all the nodes in the that postions 
-				$root = $key ; 
+				// $root = $key ; 
 				if($key == 5){// zero in postion 5
 					$fringe[] = 2;
 					$fringe[] = 4;
 					$fringe[] = 8;
-					for ($five = 0 ; $five <= 2 ; $five++){
-				
-					$root = $fringe[$five] ;
 					$new = $mystate;
-					if($fringe[0] == $root  ){
-					$new[2] = $mystate[5];
-					$new[5]= $mystate[2] ;
 				
-				//	$mystate = $new ;
-					}else if ($fringe[1] == $root) {
-						$new[4] = $mystate[5];
-						$new[5]= $mystate[4] ;
-				//		$mystate = $new ;
-					}else if ($fringe[2] == $root) {
+				
 						$new[8] = $mystate[5];
 						$new[5]= $mystate[8] ;
-				//		$mystate = $new ;
+						$mystate = $new ;
+						$depth ++ ;
+
 				
-					}
-					
-				}
-					$depth ++ ;
-				}/*else if ($key == 2){ // zero in postion 2 
+				}else if ($key == 2){ // zero in postion 2 
 					$fringe[] = 1;
 					$fringe[] = 5;
 					$new = $mystate;
@@ -79,7 +66,7 @@ class Puzzle extends Controller
 					$new[2]= $mystate[1] ;
 					$mystate = $new ;
 					$depth ++ ;
-				}*/
+				}
 
 				
 
@@ -90,16 +77,12 @@ class Puzzle extends Controller
 			}
 
 		}
-		$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate, 'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth);
+		$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
+		 'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth);
 
 
         return view('puzzle' , $arr);
 
-
-		
-		//$arr = Array('moves'=>$moves , 'bad'=>$bad , 'step'=>$step , 'key'=>$key ,  'new'=>$new , 'seven'=>$seven);
-
-       // return view('puzzle' , $arr);
 	}
 	protected function POS ($goal , $mystate , $steps , $fringe , $depth){
 		for($i = 0 ; $i<=8 ; $i ++){
