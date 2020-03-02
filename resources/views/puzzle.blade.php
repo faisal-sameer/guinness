@@ -20,3 +20,7 @@ Fringe : [
 Depth : {{$depth}}
 <br>
 {{$string}}
+<br>
+@foreach ($openNode as $openNodes)
+Opne :    {{$openNodes}}
+@endforeach
