@@ -22,6 +22,7 @@
     }
     .head{
         background-color:  #cce6ff;
+    
 
     }
 </style>
