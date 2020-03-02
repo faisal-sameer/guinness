@@ -1,18 +1,22 @@
-
-
-Good postions  : {{$moves}} 
+Good Postion :{{$steps}}
 <br>
-Bad postions : {{$bad}}
-<br>
-Step  : {{$step}}
-<br>
+Bad Postion :{{$bad}}
 
 <br>
-{{$key}}    
+0's Postion : {{$key}}
 <br>
-<br>
-@foreach ($new as $news)
-    {{$news}}
+My state [
+@foreach ($mystate as $news)
+   {{$news}}
 @endforeach
-
-
+]
+<br>
+Fringe : [ 
+@foreach ($fringe as $fringes)
+  {{$fringes}} 
+@endforeach
+]
+<br>
+Depth : {{$depth}}
+<br>
+{{$string}}
