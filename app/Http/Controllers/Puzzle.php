@@ -28,6 +28,7 @@ class Puzzle extends Controller
 		 $string = " ";
 		 $openNode = [];
 		 $oldstate = [];
+		 $view = [];
 		for($i = 0 ; $i<=8 ; $i ++){
 			if($mystate[$i] == $goal[$i]){
 				$steps ++ ;
@@ -51,18 +52,14 @@ class Puzzle extends Controller
 							$new[5]= $mystate[2] ;
 							if($new == $goal){
 								$mystate = $new ;
-								$fringe[] = 1;
-								$fringe[] = 5;
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
+								$view = $new .' '. $view ;
 							}else{
-								$fringe[] = 1;
-								$fringe[] = 5;
+								$mystate = $new ;
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
-							}
-							//$mystate = $new ;
-					
+							}					
 
 						}else if (4 == $fringe[0]){
 							$new = $mystate;
@@ -71,17 +68,11 @@ class Puzzle extends Controller
 						
 							if($new == $goal){
 								$mystate = $new ;
-								$fringe[] = 1;
-								$fringe[] = 3;
-								$fringe[] = 5;
-								$fringe[] = 7;
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
 							}else{
-								$fringe[] = 1;
-								$fringe[] = 3;
-								$fringe[] = 5;
-								$fringe[] = 7;
+								$mystate = $new ;
+
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
 							}
@@ -91,13 +82,12 @@ class Puzzle extends Controller
 							$new[5]= $mystate[8] ;
 							if($new == $goal){
 								$mystate = $new ;
-								$fringe[] = 5;
-								$fringe[] = 7;
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
 							}else{
-								$fringe[] = 5;
-								$fringe[] = 7;
+								$fringe[]= 5 ;
+								$fringe[]= 7 ;
+								$mystate = $new ;
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
 							}
@@ -105,15 +95,122 @@ class Puzzle extends Controller
 
 					}
 					$depth ++ ;
-
-				/*		$new = $mystate;
-						$new[8] = $mystate[5];
-						$new[5]= $mystate[8] ;
-						$mystate = $new ;*/
-					
-
 				
-				}else if ($key == 2){ // zero in postion 2 
+				}else if ($key == 4){ // zero in postion 4
+					$fringe[] = 1;
+					$fringe[] = 3;
+					$fringe[] = 5;
+					$fringe[] = 7;
+					for($four = 0 ; $four <= 3 ; $four++){
+						$oldstate = $mystate;
+						
+						if(1 == $fringe[0]){
+							$new = $mystate;
+							$new[4] = $mystate[1];
+							$new[1]= $mystate[4] ;
+							if($new == $goal){
+								$mystate = $new ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}else{
+								$mystate = $new ;
+
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}
+						}else if(3 == $fringe[0]){
+							$new = $mystate;
+							$new[4] = $mystate[3];
+							$new[3]= $mystate[4] ;
+							if($new == $goal){
+								$mystate = $new ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}else{
+								$mystate = $new ;
+
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}
+						}
+						else if(5 == $fringe[0]){
+							$new = $mystate;
+							$new[2] = $mystate[5];
+							$new[5]= $mystate[2] ;
+							if($new == $goal){
+								$mystate = $new ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}else{
+								$mystate = $new ; 
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}
+						}
+					}
+				
+					$depth ++ ;
+
+
+				}
+				else if ($key==3){// zero postions 3 
+					$fringe[]=0;
+					$fringe[]=4;
+					$fringe[]=6;
+					for($three=0;$three<=2;$three++){
+                        if(0==$fringe[0]){
+							$new = $mystate;
+							$new[3]=$mystate[0];
+							$new[0]=$mystate[3];
+							if($new== $goal){
+								$mystate=$new;
+								$openNode[]=$fringe[0];
+								array_shift($fringe);
+
+							}
+							else{
+								$openNode[]=$fringe[0];
+								array_shift($fringe);
+
+							}
+						}
+						else if (4 == $fringe[0]){
+							$new = $mystate;
+							$fringe[3]=$fringe[4];
+							$fringe[4]=$fringe[3];
+							if($new == $goal){
+								$mystate=$new;
+								$openNode[]=$fringe[0];
+								array_shift($fringe);
+							}
+							else{
+								$openNode[]=$fringe[0];
+								array_shift($fringe);
+							}
+						}
+						else if (6 == $fringe[0]){
+							$new = $mystate;
+							$fringe[3]=$fringe[6];
+							$fringe[6]=$fringe[3];
+							if($new == $goal){
+								$mystate=$new ;
+								$openNode[]=$fringe[0];
+								array_shift($fringe);
+							
+							}
+							else{
+								$openNode[]=$fringe[0];
+								array_shift($fringe);
+								
+							}
+						}
+
+					}
+					$depth ++ ;
+
+					}
+					
+				else if ($key == 2){ // zero in postion 2 
 					$fringe[] = 1;
 					$fringe[] = 5;
 					for($two = 0 ; $two <= 1 ; $two++){
@@ -125,17 +222,14 @@ class Puzzle extends Controller
 							$new[1]= $mystate[2] ;
 							if($new == $goal){
 								$mystate = $new ;
-							//	$fringe[] = 0;
-								$fringe[] = 2;
-								$fringe[] = 4;
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
+								$view = $new .' '. $view ;
 							}else{
-							//	$fringe[] = 0;
-							$mystate = $new ;
+								$mystate = $new ;
+								$fringe[] = 1;
+								$fringe[] = 5;
 
-								$fringe[] = 2;
-								$fringe[] = 4;
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
 							}
@@ -145,16 +239,12 @@ class Puzzle extends Controller
 							$new[5]= $mystate[2] ;
 							if($new == $goal){
 								$mystate = $new ;
-								$fringe[] = 2;
-								$fringe[] = 4;
-								$fringe[] = 8;
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
+								$view = $new .' '. $view ;
 							}else{
-								$mystate = $new ; 
-								$fringe[] = 2;
-								$fringe[] = 4;
-								$fringe[] = 8;
+								$mystate = $new ;
+
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
 							}
@@ -163,23 +253,135 @@ class Puzzle extends Controller
 				
 					$depth ++ ;
 
-				}/*else if ($key == 1){ // zero in postion 1 
-					$fringe[] = 0;
+				}else if ($key == 1){ // zero in postion 1 
+					
+
+				$fringe[] = 0;
 					$fringe[] = 2;
 					$fringe[] = 4;
-					$new = $mystate;
-					$new[1] = $mystate[2];
-					$new[2]= $mystate[1] ;
-					$mystate = $new ;
-					$depth ++ ;
-					
-					$openNode[] = $fringe[0];
-					array_shift($fringe);
-				}*/
-
+					for($one = 0 ; $one <= 2 ; $one++){
+						$oldstate = $mystate;
+						
+						if(1 == $fringe[0]){
+							$new = $mystate;
+							$new[0] = $mystate[1];
+							$new[1]= $mystate[0] ;
+							if($new == $goal){
+								$mystate = $new ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}else{
+								$mystate = $new ;
+								$fringe[]= 0 ;
+								$fringe[]= 2 ;
+								$fringe[]= 4 ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}
+						}else if(2 == $fringe[0]){
+							$new = $mystate;
+							$new[2] = $mystate[1];
+							$new[1]= $mystate[2] ;
+							if($new == $goal){
+								$mystate = $new ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+								$view = $new .' '. $view ;
+							}else{
+								$mystate = $new ;
+								$fringe[]= 1 ;
+								$fringe[]= 5 ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}
+						}else if(4 == $fringe[0]){
+							$new = $mystate;
+							$new[4] = $mystate[1];
+							$new[1]= $mystate[4] ;
+							if($new == $goal){
+								$mystate = $new ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+								$view = $new .' '. $view ;
+							}else{
+								$mystate = $new ;
+								$fringe[]= 1 ;
+								$fringe[]= 3 ;
+								$fringe[]= 5 ;
+								$fringe[]= 7 ;
+								$openNode[] = $fringe[0];
+								array_shift($fringe);
+							}
+						}
+					}
 				
+					$depth ++ ;
+				}else if ($key == 6){ // zero in postion 1 
+					
 
+						$fringe[] = 3;
+						$fringe[] = 7;
+						for($one = 0 ; $one <= 1 ; $one++){
+							$oldstate = $mystate;
+							
+							if(3 == $fringe[0]){
+								$new = $mystate;
+								$new[0] = $mystate[1];
+								$new[1]= $mystate[0] ;
+								if($new == $goal){
+									$mystate = $new ;
+									$openNode[] = $fringe[0];
+									array_shift($fringe);
+								}else{
+									$mystate = $new ;
+									$fringe[]= 0 ;
+									$fringe[]= 2 ;
+									$fringe[]= 4 ;
+									$openNode[] = $fringe[0];
+									array_shift($fringe);
+								}
+							}else if(2 == $fringe[0]){
+								$new = $mystate;
+								$new[2] = $mystate[1];
+								$new[1]= $mystate[2] ;
+								if($new == $goal){
+									$mystate = $new ;
+									$openNode[] = $fringe[0];
+									array_shift($fringe);
+									$view = $new .' '. $view ;
+								}else{
+									$mystate = $new ;
+									$fringe[]= 1 ;
+									$fringe[]= 5 ;
+									$openNode[] = $fringe[0];
+									array_shift($fringe);
+								}
+							}else if(4 == $fringe[0]){
+								$new = $mystate;
+								$new[4] = $mystate[1];
+								$new[1]= $mystate[4] ;
+								if($new == $goal){
+									$mystate = $new ;
+									$openNode[] = $fringe[0];
+									array_shift($fringe);
+									$view = $new .' '. $view ;
+								}else{
+									$mystate = $new ;
+									$fringe[]= 1 ;
+									$fringe[]= 3 ;
+									$fringe[]= 5 ;
+									$fringe[]= 7 ;
+									$openNode[] = $fringe[0];
+									array_shift($fringe);
+								}
+							}
+						}
+					
+						$depth ++ ;
+					}
 			}
+
+			
 		}
 			if($steps == 8 ){
 				$string = "found Goal ";
@@ -187,7 +389,7 @@ class Puzzle extends Controller
 
 		}
 		$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
-		 'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode);
+		 'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'view'=>$view);
 
 
         return view('puzzle' , $arr);

@@ -24,3 +24,8 @@ Depth : {{$depth}}
 @foreach ($openNode as $openNodes)
 Opne :    {{$openNodes}}
 @endforeach
+
+<br>
+@foreach ($view as $views)
+    {{$views}}
+@endforeach
