@@ -21,11 +21,15 @@ Depth : {{$depth}}
 <br>
 {{$string}}
 <br>
+Opne node : [ 
 @foreach ($openNode as $openNodes)
-Opne :    {{$openNodes}}
+   {{$openNodes}}
 @endforeach
-
+]
 <br>
 @foreach ($view as $views)
     {{$views}}
 @endforeach
+
+
+Time : {{$execution_time}}
