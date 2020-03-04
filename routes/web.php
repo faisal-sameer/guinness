@@ -32,5 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/puzzle','Puzzle@puzzle8');
 
+Route::get('/DFS','Puzzle@DFS');
+
 Route::get('/inputFialed','Barcode@show01');
 Route::post('/inputFialed','Barcode@inputFialed')->name('inputFialed');
