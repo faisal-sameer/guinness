@@ -26,6 +26,3 @@ Opne :    {{$openNodes}}
 @endforeach
 
 <br>
-@foreach ($view as $views)
-    {{$views}}
-@endforeach

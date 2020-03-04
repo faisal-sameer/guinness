@@ -27,9 +27,7 @@ Opne node : [
 @endforeach
 ]
 <br>
-@foreach ($view as $views)
-    {{$views}}
-@endforeach
+
 
 
 Time : {{$execution_time}}

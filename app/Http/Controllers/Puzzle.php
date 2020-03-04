@@ -10,12 +10,12 @@ class Puzzle extends Controller
 
 	
 //	var $key = array_search(0,$mystate);
-    public function puzzle8( ){
+    public function puzzle8( ){//bfs
 		 $goal =    [1,2,3
 		,4,5,6,
 		7,8,0];
-		 $mystate = [1,2,0
-		 ,4,3,5
+		 $mystate = [1,2,3
+		 ,4,5,0
 		 ,7,8,6];
 		 $steps = 0 ;
 		 $bad = 0 ;
@@ -27,7 +27,7 @@ class Puzzle extends Controller
 		 $string = " ";
 		 $openNode = [];
 		 $oldstate = [];
-		 $view = [];
+		 
 		 $start_time = microtime(true); 
 		 
 
@@ -38,7 +38,9 @@ class Puzzle extends Controller
 				$bad++ ;
 				$key = array_search(0,$mystate);// zero postion 
 
+				
 				for($j = 0 ; $j <= 8 ; $j++){
+					if($mystate!=$goal){
 					$key = array_search(0,$mystate);// zero postion 
 
 				// need var for root and other for next root 
@@ -234,6 +236,7 @@ class Puzzle extends Controller
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
 							}else{
+								$mystate = $new ;
 
 								$openNode[] = $fringe[0];
 								array_shift($fringe);
@@ -459,9 +462,12 @@ class Puzzle extends Controller
 					
 						$depth ++ ;
 					}
-
+				}else{
+				break;
+				}
 
 			}
+		
 
 			
 		}
@@ -474,7 +480,7 @@ class Puzzle extends Controller
 		$execution_time = ($end_time - $start_time)*60;
 
 		$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
-		 'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'view'=>$view , 'execution_time'=>$execution_time);
+		 'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode  , 'execution_time'=>$execution_time);
 
 
         return view('puzzle' , $arr);
@@ -485,7 +491,7 @@ class Puzzle extends Controller
 
 
 
-	public function DFS( ){
+	public function DFS(){
 		$goal =    [1,2,3
 	   ,4,5,6,
 	   7,8,0];
@@ -503,7 +509,7 @@ class Puzzle extends Controller
 		$string = " ";
 		$openNode = [];
 		$oldstate = [];
-		$view = [];
+	
 		$start_time = microtime(true); 
 
 	  
@@ -624,7 +630,7 @@ class Puzzle extends Controller
 			$end_time = microtime(true); 
 		$execution_time = ($end_time - $start_time)*60;
 			$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
-			'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'view'=>$view , 'execution_time'=>$execution_time);
+			'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'execution_time'=>$execution_time);
    
 	
 			return view('puzzle' , $arr);
