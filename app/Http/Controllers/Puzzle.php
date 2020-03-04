@@ -14,17 +14,15 @@ class Puzzle extends Controller
 		 $goal =    [1,2,3
 		,4,5,6,
 		7,8,0];
-		 $mystate = [1,2,0
-		,4,5,3
+		 $mystate = [1,2,3
+		,4,5,0
 		,7,8,6];
 		 $steps = 0 ;
 		 $bad = 0 ;
-		 $step = " ";
-		 $normal = [1,2,3,4,5,6,7,8,9];
+		 
 		 $fringe = [];
 		 $depth = 0 ;
 		 $new = [] ;
-		 $allroot=[];
 		 $key = 0;
 		 $string = " ";
 		 $openNode = [];
@@ -256,22 +254,7 @@ class Puzzle extends Controller
         return view('puzzle' , $arr);
 
 	}
-	protected function POS ($goal , $mystate , $steps , $fringe , $depth){
-		for($i = 0 ; $i<=8 ; $i ++){
-			if($mystate[$i] == $goal[$i]){
-				$steps ++ ;
-			}else{
-				$bad++ ;
-			}
-			if($steps == 8 ){
-				$text = "found Goal ";
-				
-				
-			}
 
-}
-return  $text;
-}
 }
 
 
