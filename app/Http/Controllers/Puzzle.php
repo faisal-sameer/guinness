@@ -509,7 +509,14 @@ class Puzzle extends Controller
 		$string = " ";
 		$openNode = [];
 		$oldstate = [];
-	
+		$myarray = array( 
+      
+			// Ankit will act as key 
+		 
+				  
+			// Ram will act as key 
+		
+		);
 		$start_time = microtime(true); 
 
 	  
@@ -594,11 +601,41 @@ class Puzzle extends Controller
 					else if ($key == 2){ // zero in postion 2 
 						$fringe[] = 1;
 						$fringe[] = 5;
+						$fringe[] = 2;
+						$myarray[3] = $mystate;
+
 						$new = $mystate;
 						$new[2] = $mystate[1];
 						$new[1]= $mystate[2] ;
-						$mystate = $new ;
-						$depth ++ ;
+						
+						$myarray[0] = $new;
+						
+						$new = $mystate;
+
+						$new[2] = $mystate[5];
+						$new[5]= $mystate[2] ;
+
+						$myarray[1] = $new;
+						$mystate =$new;
+
+
+						$mystate =$new;
+						$new[5] = $mystate[2];
+						$new[2]= $mystate[5] ;
+						$myarray[2] = $new;
+						if($myarray[2]==$myarray[3]){
+							$openNode[] = 2;
+								$string = "Loop";
+						}else{
+							$string = "no Loop ";
+						}
+
+						
+
+
+
+						//$fringe[] = $myarray[0];
+
 					}else if ($key == 1){ // zero in postion 1 
 						$fringe[] = 0;
 						$fringe[] = 2;
@@ -630,7 +667,7 @@ class Puzzle extends Controller
 			$end_time = microtime(true); 
 		$execution_time = ($end_time - $start_time)*60;
 			$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
-			'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'execution_time'=>$execution_time);
+			'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'execution_time'=>$execution_time,'myarray'=>$myarray);
    
 	
 			return view('puzzle' , $arr);

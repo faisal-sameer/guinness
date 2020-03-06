@@ -28,6 +28,14 @@ Opne node : [
 ]
 <br>
 
+@foreach ($myarray as  $keys => $value)
 
+<br>
+    @foreach ($value as $values)
+    {{$values}}
+    @endforeach
+@endforeach
+
+<br>
 
 Time : {{$execution_time}}
