@@ -495,32 +495,301 @@ class Puzzle extends Controller
 		$goal =    [1,2,3
 	   ,4,5,6,
 	   7,8,0];
-		$mystate =[1,2,0
-		,4,3,5
-		,7,8,6];
+		$mystate =[1,2,3
+				  ,4,5,0
+				  ,7,8,6];
 		$steps = 0 ;
 		$bad = 0 ;
 		$step = " ";
-		$normal = [1,2,3,4,5,6,7,8,9];
-		$fringe =  [];
+	//	$fringe =  [];
 		$depth = 0 ;
 		$new = [] ;
 		$key = 0;
 		$string = " ";
-		$openNode = [];
+		$openNode = array();
 		$oldstate = [];
-		$myarray = array( 
-      
-			// Ankit will act as key 
-		 
-				  
-			// Ram will act as key 
-		
-		);
+		$fringe = array();
 		$start_time = microtime(true); 
+		$openNode[0]=[] ;
+		$openNode[1]=[] ;
+		$openNode[2]=[] ;
+		$openNode[3]=[] ;
+		$openNode[4]=[] ;
+		$openNode[5]=[] ;
+		$openNode[6]=[] ;
+		$openNode[7]=[] ;
+		$openNode[8]=[] ;
 
 	  
-	/*	for($i = 0 ; $i<=8 ; $i ++){
+		if($mystate == $goal){
+			$string = "State equal Goal !!";
+		}else{
+			for($i = 0 ; $i <=8 ; $i++){
+			$key = array_search(0,$mystate);// zero postion 
+		
+			if($key == 5){// postion 5 (2 , 4 , 8)
+				$openNode[5]=$mystate;
+				if($openNode[2] != $mystate ){
+					$new = $mystate ;
+			$new[5] = $mystate[2];  
+			$new[2] = $mystate[5];
+				if($new == $goal){
+					$mystate = $new ; 
+					$fringe[2] = $new;
+					$openNode[2] = $new; 
+					}else{
+						$mystate = $new ; 
+						$fringe[2]= $new;
+						$openNode[2] = $new; 
+					}
+				}else if ($openNode[4]!=  $mystate){
+				$new = $mystate ;
+			$new[5] = $mystate[4];  
+			$new[4] = $mystate[5];
+				if($new == $goal){
+					$mystate = $new ; 
+					$fringe[4] = $new;
+					$openNode[4] = $new; 
+					}else{
+						$mystate = $new ; 
+						$fringe[4]= $new;
+						$openNode[4] = $new; 
+					}
+				}else if ($openNode[8]!=  $mystate){
+					$new = $mystate ;
+				$new[5] = $mystate[8];  
+				$new[8] = $mystate[5];
+					if($new == $goal){
+						$mystate = $new ; 
+						$fringe[8] = $new;
+						$openNode[8] = $new; 
+						}else{
+							$mystate = $new ; 
+							$fringe[8]= $new;
+							$openNode[8] = $new; 
+						}
+					}
+				$depth++;
+
+			}else if($key == 2){// postion 5 (1 , 5)
+				$openNode[2]=$mystate;
+
+				
+
+				$new = $mystate ;
+				$openNode[2] = $new;
+				$new[2] = $mystate[1];  
+				$new[1] = $mystate[2];
+				if($openNode[1] != $new ){
+					if($new == $goal){
+					$mystate = $new ; 
+					$fringe[1] = $new;
+					$openNode[1] = $new; 
+					}else{
+						$mystate = $new ; 
+
+						$fringe[1]= $new;
+						$openNode[1] = $new; 
+					}
+				 }
+					
+				
+					$new = $mystate ;
+				$openNode[5] = $new;
+				$new[2] = $mystate[5];  
+				$new[5] = $mystate[2];
+				 if ($openNode[5] != $new ){
+					if($new == $goal){
+					$mystate = $new ; 
+					$fringe[5] = $new;
+					$openNode[5] = $new; 
+					}else{
+						$mystate = $new ; 
+
+						$fringe[5]= $new;
+						$openNode[5] = $new; 
+ 
+					}
+				}
+					$depth++;
+
+				}
+				else if($key == 1){// postion 1 (0 , 2 , 4)
+					$openNode[1]=$mystate;
+
+
+							$new = $mystate ;
+							$openNode[1] = $new;
+							$new[1] = $mystate[0];  
+							$new[0] = $mystate[1];
+							if($openNode[0] != $new){
+								if($new == $goal){
+								$mystate = $new ; 
+								$fringe[0] = $new;
+								$openNode[0] = $new; 
+								}else{
+									$mystate = $new ; 
+									$fringe[0]= $new;
+									$openNode[0] = $new; 
+			 
+								}
+
+						}
+							$new = $mystate ;
+							$openNode[1] = $new;
+							$new[1] = $mystate[2];  
+							$new[2] = $mystate[1];
+							if ($openNode[2] != $new ){
+							if($new == $goal){
+								$mystate = $new ; 
+								$fringe[2] = $new;
+								$openNode[2] = $new; 
+								}else{
+									$mystate = $new ; 
+									$fringe[2]= $new;
+									$openNode[2] = $new; 
+			 
+								}
+
+						}
+							$new = $mystate ;
+							$openNode[4] = $new;
+							$new[1] = $mystate[4];  
+							$new[4] = $mystate[1];
+							if ($openNode[4] != $new ){
+							if($new == $goal){
+								$mystate = $new ; 
+								$fringe[4] = $new;
+								$openNode[4] = $new; 
+								}else{
+									$mystate = $new ; 
+									$fringe[4]= $new;
+									$openNode[4] = $new; 
+			 
+								}
+							}
+					$depth++;
+
+				}
+				else if($key == 0){// postion 5 (1 , 3 )
+					$openNode[0]=$mystate;
+
+					if($openNode[1] != $mystate){
+					$new = $mystate ;
+					$openNode[1] = $new;
+					$new[1] = $mystate[0];  
+					$new[0] = $mystate[1];
+						if($new == $goal){
+						$mystate = $new ; 
+						$fringe[1] = $new;
+						$openNode[1] = $new; 
+						}else{
+							$mystate = $new ; 
+							$fringe[1]= $new;
+							$openNode[1] = $new; 
+	 
+						}
+					}else if ($openNode[3] != $mystate){
+						$new = $mystate ;
+					$openNode[3] = $new;
+					$new[3] = $mystate[0];  
+					$new[0] = $mystate[3];
+						if($new == $goal){
+						$mystate = $new ; 
+						$fringe[3] = $new;
+						$openNode[3] = $new; 
+						}else{
+							$mystate = $new ; 
+							$fringe[3]= $new;
+							$openNode[3] = $new; 
+	 
+						}
+					}
+				$depth++;
+
+		 }else if($key == 3){// postion 3 (0 , 4 , 6 )
+			$openNode[3]=$mystate;
+
+			if($openNode[0] != $mystate){
+			$new = $mystate ;
+			$openNode[0] = $new;
+			$new[0] = $mystate[3];  
+			$new[3] = $mystate[0];
+				if($new == $goal){
+				$mystate = $new ; 
+				$fringe[3] = $new;
+				$openNode[3] = $new; 
+				}else{
+					$mystate = $new ; 
+					$fringe[3]= $new;
+					$openNode[3] = $new; 
+
+				}
+			}else if ($openNode[4] != $mystate){
+				$new = $mystate ;
+			$openNode[4] = $new;
+			$new[4] = $mystate[3];  
+			$new[3] = $mystate[4];
+				if($new == $goal){
+				$mystate = $new ; 
+				$fringe[4] = $new;
+				$openNode[4] = $new; 
+				}else{
+					$mystate = $new ; 
+					$fringe[4]= $new;
+					$openNode[4] = $new; 
+
+				}
+			}
+		$depth++;
+
+ }
+		}
+
+
+
+		 if($mystate == $goal ){
+			$string ="found goal ";
+		}else{
+			$string = "Goal not found ";
+		}
+
+		}
+
+		
+		 
+		
+
+
+
+
+
+
+			$end_time = microtime(true); 
+		$execution_time = ($end_time - $start_time)*60;
+			$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
+			'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'execution_time'=>$execution_time);
+   
+	
+			return view('puzzle' , $arr);
+	
+		}
+	}
+   
+	
+
+
+
+
+
+
+
+
+
+/*
+
+
+		for($i = 0 ; $i<=8 ; $i ++){
 		   if($mystate[$i] == $goal[$i]){
 			   $steps ++ ;
 		   }else{
@@ -663,29 +932,7 @@ class Puzzle extends Controller
 					$string = "found Goal ";
 				}
 	
-			}*/
+			}
 
 
-
-
-
-
-
-			$end_time = microtime(true); 
-		$execution_time = ($end_time - $start_time)*60;
-			$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
-			'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'execution_time'=>$execution_time,'myarray'=>$myarray);
-   
-	
-			return view('puzzle' , $arr);
-	
-		}
-	}
-   
-
-
-
-
-
-
-
+*/

@@ -10,30 +10,33 @@ My state [
    {{$news}}
 @endforeach
 ]
-<br>
-Fringe : [ 
-@foreach ($fringe as $fringes)
-  {{$fringes}} 
-@endforeach
-]
+
 <br>
 Depth : {{$depth}}
 <br>
 {{$string}}
 <br>
-Opne node : [ 
-@foreach ($openNode as $openNodes)
-   {{$openNodes}}
-@endforeach
-]
-<br>
-
-@foreach ($myarray as  $keys => $value)
-
-<br>
+Opne node :  
+@foreach ($openNode as  $keys => $value)
+   {{$keys}} [
+      
     @foreach ($value as $values)
     {{$values}}
     @endforeach
+   ] <br>
+@endforeach
+
+<br>
+
+@foreach ($fringe as  $keys => $value)
+{{$keys}} [
+    @foreach ($value as $values)
+    {{$values}}
+
+    @endforeach
+]
+    <br>
+
 @endforeach
 
 <br>
