@@ -524,15 +524,16 @@ class Puzzle extends Controller
 		if($mystate == $goal){
 			$string = "State equal Goal !!";
 		}else{
-			for($i = 0 ; $i <=8 ; $i++){
+			for($i = 0 ; $i <=3 ; $i++){
 			$key = array_search(0,$mystate);// zero postion 
 		
 			if($key == 5){// postion 5 (2 , 4 , 8)
 				$openNode[5]=$mystate;
-				if($openNode[2] != $mystate ){
+			
 					$new = $mystate ;
 			$new[5] = $mystate[2];  
 			$new[2] = $mystate[5];
+			if($openNode[2] != $new ){
 				if($new == $goal){
 					$mystate = $new ; 
 					$fringe[2] = $new;
@@ -542,10 +543,14 @@ class Puzzle extends Controller
 						$fringe[2]= $new;
 						$openNode[2] = $new; 
 					}
-				}else if ($openNode[4]!=  $mystate){
+
+				}else if($openNode[2]== $new){
+				
+				 
 				$new = $mystate ;
 			$new[5] = $mystate[4];  
 			$new[4] = $mystate[5];
+			if ($openNode[4] !=  $new){
 				if($new == $goal){
 					$mystate = $new ; 
 					$fringe[4] = $new;
@@ -555,10 +560,13 @@ class Puzzle extends Controller
 						$fringe[4]= $new;
 						$openNode[4] = $new; 
 					}
-				}else if ($openNode[8]!=  $mystate){
+
+				}else if ($openNode[4]== $new) {
+				
 					$new = $mystate ;
 				$new[5] = $mystate[8];  
 				$new[8] = $mystate[5];
+				if ($openNode[8]!=  $new){
 					if($new == $goal){
 						$mystate = $new ; 
 						$fringe[8] = $new;
@@ -569,7 +577,13 @@ class Puzzle extends Controller
 							$openNode[8] = $new; 
 						}
 					}
+				}
+			}
 				$depth++;
+
+
+
+
 
 			}else if($key == 2){// postion 5 (1 , 5)
 				$openNode[2]=$mystate;
@@ -591,7 +605,7 @@ class Puzzle extends Controller
 						$fringe[1]= $new;
 						$openNode[1] = $new; 
 					}
-				 }
+				 }else if ($openNode[1]== $new){
 					
 				
 					$new = $mystate ;
@@ -610,7 +624,9 @@ class Puzzle extends Controller
 						$openNode[5] = $new; 
  
 					}
+					
 				}
+			}
 					$depth++;
 
 				}
@@ -629,12 +645,12 @@ class Puzzle extends Controller
 								$openNode[0] = $new; 
 								}else{
 									$mystate = $new ; 
-									$fringe[0]= $new;
+									$fringe[0] = $new;
 									$openNode[0] = $new; 
 			 
 								}
 
-						}
+						}else if ($openNode[0]== $new){
 							$new = $mystate ;
 							$openNode[1] = $new;
 							$new[1] = $mystate[2];  
@@ -651,7 +667,8 @@ class Puzzle extends Controller
 			 
 								}
 
-						}
+
+						}else if ($openNode[2]== $new){
 							$new = $mystate ;
 							$openNode[4] = $new;
 							$new[1] = $mystate[4];  
@@ -668,17 +685,20 @@ class Puzzle extends Controller
 			 
 								}
 							}
+						}
+							}
 					$depth++;
 
 				}
-				else if($key == 0){// postion 5 (1 , 3 )
+				else if($key == 0){// postion 0 (1 , 3 )
 					$openNode[0]=$mystate;
 
-					if($openNode[1] != $mystate){
 					$new = $mystate ;
 					$openNode[1] = $new;
 					$new[1] = $mystate[0];  
 					$new[0] = $mystate[1];
+					if($openNode[1] != $new){
+
 						if($new == $goal){
 						$mystate = $new ; 
 						$fringe[1] = $new;
@@ -689,11 +709,13 @@ class Puzzle extends Controller
 							$openNode[1] = $new; 
 	 
 						}
-					}else if ($openNode[3] != $mystate){
+					}else if($openNode[1]==$new){ 
+
 						$new = $mystate ;
 					$openNode[3] = $new;
 					$new[3] = $mystate[0];  
 					$new[0] = $mystate[3];
+					if ($openNode[3] != $new){
 						if($new == $goal){
 						$mystate = $new ; 
 						$fringe[3] = $new;
@@ -705,16 +727,19 @@ class Puzzle extends Controller
 	 
 						}
 					}
+				}
 				$depth++;
 
 		 }else if($key == 3){// postion 3 (0 , 4 , 6 )
+			
 			$openNode[3]=$mystate;
 
-			if($openNode[0] != $mystate){
+			
 			$new = $mystate ;
 			$openNode[0] = $new;
 			$new[0] = $mystate[3];  
 			$new[3] = $mystate[0];
+			if($openNode[0] != $new){
 				if($new == $goal){
 				$mystate = $new ; 
 				$fringe[3] = $new;
@@ -725,11 +750,12 @@ class Puzzle extends Controller
 					$openNode[3] = $new; 
 
 				}
-			}else if ($openNode[4] != $mystate){
+			}else if ($openNode[0] == $new){
 				$new = $mystate ;
 			$openNode[4] = $new;
 			$new[4] = $mystate[3];  
 			$new[3] = $mystate[4];
+			if($openNode[4] != $new){
 				if($new == $goal){
 				$mystate = $new ; 
 				$fringe[4] = $new;
@@ -741,6 +767,7 @@ class Puzzle extends Controller
 
 				}
 			}
+		}
 		$depth++;
 
  }
