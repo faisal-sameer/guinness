@@ -14,8 +14,8 @@ class Puzzle extends Controller
 		 $goal =    [1,2,3
 		,4,5,6,
 		7,8,0];
-		 $mystate = [1,2,3
-		 ,4,5,0
+		 $mystate = [1,0,2
+		 ,4,5,3
 		 ,7,8,6];
 		 $steps = 0 ;
 		 $bad = 0 ;
@@ -502,18 +502,19 @@ class Puzzle extends Controller
 		$bad = 0 ;
 		$step = " ";
 		$normal = [1,2,3,4,5,6,7,8,9];
-		$fringe = [];
+		$fringe =  [];
 		$depth = 0 ;
 		$new = [] ;
 		$key = 0;
 		$string = " ";
 		$openNode = [];
 		$oldstate = [];
+		
 	
 		$start_time = microtime(true); 
 
 	  
-		for($i = 0 ; $i<=8 ; $i ++){
+	/*	for($i = 0 ; $i<=8 ; $i ++){
 		   if($mystate[$i] == $goal[$i]){
 			   $steps ++ ;
 		   }else{
@@ -626,7 +627,14 @@ class Puzzle extends Controller
 					$string = "found Goal ";
 				}
 	
-			}
+			}*/
+
+
+
+
+
+
+
 			$end_time = microtime(true); 
 		$execution_time = ($end_time - $start_time)*60;
 			$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
@@ -638,8 +646,8 @@ class Puzzle extends Controller
 		}
 	}
    
-}
-}
+
+
 
 
 
