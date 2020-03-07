@@ -38,7 +38,7 @@ Opne node :
     <br>
 
 @endforeach
-
+{{$azo}}
 <br>
 
 Time : {{$execution_time}}
