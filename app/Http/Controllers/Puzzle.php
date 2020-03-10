@@ -492,12 +492,13 @@ class Puzzle extends Controller
 
 
 	public function DFS(){
-		$goal =    [1,2,3
-	   ,4,5,6,
-	   7,8,0];
-		$mystate =[1,2,3
-				  ,4,5,0
-				  ,7,8,6];
+		$goal =    [0,8,7,
+		6,5,4,
+		3,2,1];
+
+		$mystate =[6,8,7,
+					0,5,4,
+					3,2,1];
 		$steps = 0 ;
 		$bad = 0 ;
 		$step = " ";
@@ -506,6 +507,8 @@ class Puzzle extends Controller
 		$new = [] ;
 		$key = 0;
 		$string = " ";
+		$azo = "        ";
+
 		$openNode = array();
 		$oldstate = [];
 		$fringe = array();
@@ -524,7 +527,7 @@ class Puzzle extends Controller
 		if($mystate == $goal){
 			$string = "State equal Goal !!";
 		}else{
-			for($i = 0 ; $i <=3 ; $i++){
+			for($i = 0 ; $i <=100 ; $i++){
 			$key = array_search(0,$mystate);// zero postion 
 		
 			if($key == 5){// postion 5 (2 , 4 , 8)
@@ -564,6 +567,8 @@ class Puzzle extends Controller
 					}
 				} 
 			}
+			$azo = "   five   " . $azo;
+
 				$depth++;
 
 
@@ -573,7 +578,6 @@ class Puzzle extends Controller
 			}else if($key == 2){// postion 5 (1 , 5)
 				$openNode[2]=$mystate;
 				$new = $mystate ;
-				$openNode[2] = $new;
 				$new[2] = $mystate[1];  
 				$new[1] = $mystate[2];
 				if($openNode[1] != $new ){
@@ -583,7 +587,6 @@ class Puzzle extends Controller
 					
 				 }else if ($openNode[1]== $new){
 					$new = $mystate ;
-				$openNode[5] = $new;
 				$new[2] = $mystate[5];  
 				$new[5] = $mystate[2];
 				 if ($openNode[5] != $new ){
@@ -593,13 +596,14 @@ class Puzzle extends Controller
 					
 				}
 			}
+			$azo = "    tow   " . $azo;
+
 					$depth++;
 
 				}
 				else if($key == 1){// postion 1 (0 , 2 , 4)
 							$openNode[1]=$mystate;
 							$new = $mystate ;
-							$openNode[1] = $new;
 							$new[1] = $mystate[0];  
 							$new[0] = $mystate[1];
 							if ($openNode[0]!= $new){
@@ -610,7 +614,6 @@ class Puzzle extends Controller
 
 						}else if ($openNode[0]== $new){
 							$new = $mystate ;
-							$openNode[1] = $new;
 							$new[1] = $mystate[2];  
 							$new[2] = $mystate[1];
 							if ($openNode[2] != $new ){
@@ -622,7 +625,6 @@ class Puzzle extends Controller
 
 						}else if ($openNode[2]== $new){
 							$new = $mystate ;
-							$openNode[4] = $new;
 							$new[1] = $mystate[4];  
 							$new[4] = $mystate[1];
 							if ($openNode[4] != $new ){
@@ -633,15 +635,17 @@ class Puzzle extends Controller
 							}
 						}
 					}
+					$azo = "   one   " . $azo;
+
 					$depth++;
 
 				}
 				else if($key == 0){// postion 0 (1 , 3 )
 					$openNode[0]=$mystate;
 					$new = $mystate ;
-					$openNode[1] = $new;
-					$new[1] = $mystate[0];  
-					$new[0] = $mystate[1];
+					//$openNode[1] = $new;
+					$new[0] = $mystate[1];  
+					$new[1] = $mystate[0];
 					if($openNode[1] != $new){
 						$mystate = $new ; 
 						$fringe[1] = $new;
@@ -650,9 +654,9 @@ class Puzzle extends Controller
 					}else if($openNode[1]==$new){ 
 
 						$new = $mystate ;
-					$openNode[3] = $new;
-					$new[3] = $mystate[0];  
-					$new[0] = $mystate[3];
+					//$openNode[3] = $new;
+					$new[0] = $mystate[3];  
+					$new[3] = $mystate[0];
 					if ($openNode[3] != $new){
 						$mystate = $new ; 
 						$fringe[3] = $new;
@@ -660,35 +664,34 @@ class Puzzle extends Controller
 						
 					}
 				}
+				$azo = "   zero   " . $azo;
+
 				$depth++;
 
 		 }else if($key == 3){// postion 3 (0 , 4 , 6 )
 			$openNode[3]=$mystate;
 			$new = $mystate ;
-			$openNode[0] = $new;
-			$new[0] = $mystate[3];  
-			$new[3] = $mystate[0];
+			$new[3] = $mystate[0];  
+			$new[0] = $mystate[3];
 			if($openNode[0] != $new){
 				$mystate = $new ; 
-				$fringe[3] = $new;
-				$openNode[3] = $new; 
+				$fringe[0] = $new;
+				$openNode[0] = $new; 
 				
 			}else if ($openNode[0] == $new){
 				$new = $mystate ;
-			$openNode[4] = $new;
-			$new[4] = $mystate[3];  
-			$new[3] = $mystate[4];
+			$new[3] = $mystate[4];  
+			$new[4] = $mystate[3];
 			if($openNode[4] != $new){
 				$mystate = $new ; 
 				$fringe[4] = $new;
 				$openNode[4] = $new; 
 				
 			}
-		else if ($openNode[6]== $new ){
+		else if ($openNode[4]== $new ){
 			$new = $mystate ;
-			$openNode[6] = $new;
-			$new[6] = $mystate[3];  
-			$new[3] = $mystate[6];
+			$new[3] = $mystate[6];  
+			$new[6] = $mystate[3];
 			if($openNode[6] != $new){
 					$mystate = $new ; 
 					$fringe[6]= $new;
@@ -698,18 +701,158 @@ class Puzzle extends Controller
 		}
 	}
 }
+$azo = "   three   " . $azo;
+
 		$depth++;
 
  }
+		else if($key == 4){// postion  (1 , 3 ,5, 7 )
+			$openNode[4]=$mystate;
+			$new = $mystate ;
+			$new[4] = $mystate[1];  
+			$new[1] = $mystate[4];
+			if($openNode[1] != $new){
+				$mystate = $new ; 
+				$fringe[1] = $new;
+				$openNode[1] = $new; 
+				
+			}else if ($openNode[1] == $new){
+				$new = $mystate ;
+			$new[4] = $mystate[3];  
+			$new[3] = $mystate[4];
+			if($openNode[3] != $new){
+				$mystate = $new ; 
+				$fringe[3] = $new;
+				$openNode[3] = $new; 
+				
+			}
+		else if ($openNode[5]== $new ){
+			$new = $mystate ;
+			$new[4] = $mystate[5];  
+			$new[5] = $mystate[4];
+			if($openNode[5] != $new){
+					$mystate = $new ; 
+					$fringe[5]= $new;
+					$openNode[5] = $new; 
+
+				
+		}
+	}else if ($openNode[7]== $new ){
+		$new = $mystate ;
+		$new[4] = $mystate[8];  
+		$new[7] = $mystate[4];
+		if($openNode[7] != $new){
+				$mystate = $new ; 
+				$fringe[7]= $new;
+				$openNode[7] = $new; 
+
+			
+	}
+}
+			}
+
+		$depth++;
+
+ }
+ else if($key == 6){// postion  (3, 7 )
+	$openNode[6]=$mystate;
+	$new = $mystate ;
+	$new[6] = $mystate[3];  
+	$new[3] = $mystate[6];
+	if($openNode[3] != $new){
+		$mystate = $new ; 
+		$fringe[3] = $new;
+		$openNode[3] = $new; 
+		
+	}else if ($openNode[3] == $new){
+		$new = $mystate ;
+	$new[6] = $mystate[7];  
+	$new[7] = $mystate[6];
+	if($openNode[7] != $new){
+		$mystate = $new ; 
+		$fringe[7] = $new;
+		$openNode[7] = $new; 
+		
+	}
+	}
+
+$depth++;
+
+}
+
+else if($key == 7){// postion  (4,6,8 )
+	$openNode[7]=$mystate;
+	$new = $mystate ;
+	$new[7] = $mystate[4];  
+	$new[4] = $mystate[7];
+	if($openNode[4] != $new){
+		$mystate = $new ; 
+		$fringe[4] = $new;
+		$openNode[4] = $new; 
+		
+	}else if ($openNode[4] == $new){
+		$new = $mystate ;
+	$new[7] = $mystate[6];  
+	$new[6] = $mystate[7];
+	if($openNode[6] != $new){
+		$mystate = $new ; 
+		$fringe[6] = $new;
+		$openNode[6] = $new; 
+		
+	}
+	}
+
+	else if ($openNode[6] == $new){
+		$new = $mystate ;
+	$new[7] = $mystate[8];  
+	$new[8] = $mystate[7];
+	if($openNode[6] != $new){
+		$mystate = $new ; 
+		$fringe[8] = $new;
+		$openNode[8] = $new; 
+		
+	}
+	}
+$depth++;
+
+}
+else if($key == 8){// postion  (5,7 )
+	$openNode[8]=$mystate;
+	$new = $mystate ;
+	$new[8] = $mystate[5];  
+	$new[5] = $mystate[8];
+	if($openNode[5] != $new){
+		$mystate = $new ; 
+		$fringe[5] = $new;
+		$openNode[5] = $new; 
+		
+	}else if ($openNode[5] == $new){
+		$new = $mystate ;
+	$new[8] = $mystate[7];  
+	$new[7] = $mystate[8];
+	if($openNode[7] != $new){
+		$mystate = $new ; 
+		$fringe[7] = $new;
+		$openNode[7] = $new; 
+		
+	}
+	}
+
+$depth++;
+
+}
+
+if($mystate == $goal ){
+	$string ="found goal ";
+break;
+}else{
+	$string = "Goal not found ";
+}
 		}
 
 
 
-		 if($mystate == $goal ){
-			$string ="found goal ";
-		}else{
-			$string = "Goal not found ";
-		}
+	
 
 		}
 
@@ -725,7 +868,8 @@ class Puzzle extends Controller
 			$end_time = microtime(true); 
 		$execution_time = ($end_time - $start_time)*60;
 			$arr = Array('steps'=>$steps , 'bad'=>$bad  , 'key'=>$key , 'mystate'=>$mystate,
-			'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'execution_time'=>$execution_time);
+			'fringe'=>$fringe , 'string'=>$string , 'depth'=>$depth , 'openNode'=>$openNode , 'execution_time'=>$execution_time,
+				'azo'=>$azo);
    
 	
 			return view('puzzle' , $arr);
