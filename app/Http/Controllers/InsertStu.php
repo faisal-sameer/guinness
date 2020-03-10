@@ -58,8 +58,8 @@ class InsertStu extends Controller
 		            ,4,5,6,
                     7,8,0];
                     
-         $mystate = [1,2,3
-                    ,4,5,0
+         $mystate = [1,2,0
+                    ,4,5,3
                     ,7,8,6];
         $currentState = [];// h(n)
         $depth = 0 ; //g(n)
@@ -69,8 +69,10 @@ class InsertStu extends Controller
         $Stepaway1 = 0 ;
         $Stepaway2 = 0 ;
         $Stepaway3 = 0 ;
+        $key= 0 ;
+        $f ="";
 
-        for($depth;$depth<=$maxDepth;$depth++){
+        for($i = $depth ;$i<=$maxDepth;$i++){
             
             $key = array_search(0,$mystate);// zero postion 
 
@@ -84,7 +86,7 @@ class InsertStu extends Controller
                 $currentState[2] = $mystate[5];
                 for($two = 0 ; $two <= 8 ;$two++){
                     if($currentState[$two] != $goal[$two]){
-                        $Stepaway1++  ; 
+                        $Stepaway1++ ; 
                     }
                 }
 
@@ -106,10 +108,122 @@ class InsertStu extends Controller
                     }
                 }
 
+               $min =  min($Stepaway1,$Stepaway2,$Stepaway3);
 
+                
+                
+
+               if($Stepaway1 == $min){
+                $currentState = $mystate;
+            $currentState[5] = $mystate[2]; 
+            $currentState[2] = $mystate[5];
+                $mystate = $currentState ;
+            }
+            
+           else  if ($Stepaway2 == $min){
+                $currentState = $mystate;
+            $currentState[5] = $mystate[4]; 
+            $currentState[4] = $mystate[5];
+                $mystate = $currentState ;
+            
+
+            }
+            
+            else if ($Stepaway3 == $min){
+            $currentState = $mystate;
+            $currentState[5] = $mystate[8]; 
+            $currentState[8] = $mystate[5];
+                $mystate = $currentState ;
+            }
+
+
+
+
+
+            
+
+             if($mystate == $goal){
+            $f = "found Goal";
+        break;
+
+            }else{
+                $f = "Goal not found !";
+            }
+              
+
+
+            
 
 
             }
+
+
+            else if($key == 2){// 0 in potions 2 (1,5)
+                $fringe[]=1;
+                $fringe[]=5;
+                
+                $currentState = $mystate;
+                $currentState[2] = $mystate[1]; 
+                $currentState[1] = $mystate[2];
+                for($one = 0 ; $one <= 8 ;$one++){
+                    if($currentState[$one] != $goal[$one]){
+                        $Stepaway1++ ; 
+                    }
+                }
+
+                $currentState = $mystate;
+                $currentState[2] = $mystate[5]; 
+                $currentState[5] = $mystate[2];
+                for($five = 0 ; $five <= 8 ;$five++){
+                    if($currentState[$five] != $goal[$five]){
+                        $Stepaway2++  ; // f(n) = 1 + 3  -> 
+                    }
+                }
+                
+              
+
+               $min =  min($Stepaway1,$Stepaway2);
+
+                
+                
+
+               if($Stepaway1 == $min){
+                $currentState = $mystate;
+            $currentState[2] = $mystate[1]; 
+            $currentState[1] = $mystate[2];
+                $mystate = $currentState ;
+            }
+            
+           else  if ($Stepaway2 == $min){
+                $currentState = $mystate;
+            $currentState[2] = $mystate[5]; 
+            $currentState[5] = $mystate[2];
+                $mystate = $currentState ;
+            
+
+            }
+            
+
+            
+
+             if($mystate == $goal){
+            $f = "found Goal";
+        break;
+
+            }else{
+                $f = "Goal not found !";
+            }
+        }
+
+
+
+
+
+
+           
+        
+
+           
             
 
 
@@ -118,7 +232,8 @@ class InsertStu extends Controller
         }
         
 
-        $arr = Array('Stepaway1'=>$Stepaway1 , 'Stepaway2'=>$Stepaway2  , 'Stepaway3'=>$Stepaway3 );
+        $arr = Array('Stepaway1'=>$Stepaway1 , 'Stepaway2'=>$Stepaway2  , 'Stepaway3'=>$Stepaway3 , 'min'=>$min, "f"=>$f ,
+         "mystate"=>$mystate , "currentState"=>$currentState);
 
 
         return view('Astar' , $arr);
