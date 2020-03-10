@@ -28,17 +28,14 @@ Opne node :
 
 <br>
 
-@foreach ($fringe as  $keys => $value)
-{{$keys}} [
-    @foreach ($value as $values)
-    {{$values}}
-
-    @endforeach
+@foreach ($fringe as  $keyss => $values)
+{{$keyss}} [
+  
 ]
     <br>
 
 @endforeach
-{{$azo}}
 <br>
 
 Time : {{$execution_time}}
+

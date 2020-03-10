@@ -30,9 +30,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/puzzle','Puzzle@puzzle8');
+Route::get('/BFS','Puzzle@BFS');
 
 Route::get('/DFS','Puzzle@DFS');
+
+Route::get('/Astar','InsertStu@Astar');
 
 Route::get('/inputFialed','Barcode@show01');
 Route::post('/inputFialed','Barcode@inputFialed')->name('inputFialed');
