@@ -9,13 +9,18 @@ Min number : {{$min}}
 <br>
 {{$f}}
 <br>
-@foreach ($mystate as $mystates)
-    {{$mystates}}
-
-@endforeach
+Depth : {{$depth}}
 <br>
-@foreach ($currentState as $currentStates)
-    {{$currentStates}}
+
+Opne node :  
+<br>
+@foreach ($open as  $keys => $value)
+    Depth {{$keys}} [
+      
+    @foreach ($value as $values)
+    {{$values}}
+    @endforeach
+   ] <br>
 @endforeach
 
 
