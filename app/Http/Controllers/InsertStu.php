@@ -215,12 +215,152 @@ class InsertStu extends Controller
             }
         }
 
+        
+        else if($key == 0){// 0 in potions 0 (1,5)
+            $fringe[]=1;
+            $fringe[]=3;
+            
+            $currentState = $mystate;
+            $currentState[0] = $mystate[1]; 
+            $currentState[1] = $mystat[0];
+            for($one = 0 ; $one <= 8 ;$one++){
+                if($currentState[$one] != $goal[$one]){
+                    $Stepaway1++ ; 
+                }
+            }
+
+            $currentState = $mystate;
+            $currentState[0] = $mystate[3]; 
+            $currentState[3] = $mystate[0];
+            for($three = 0 ; $three <= 8 ;$three++){
+                if($currentState[$three] != $goal[$three]){
+                    $Stepaway2++  ; // f(n) = 1 + 3  -> 
+                }
+            }
+            
+          
+
+           $min =  min($Stepaway1,$Stepaway2);
+
+            
+            
+
+           if($Stepaway1 == $min){
+            $currentState = $mystate;
+        $currentState[0] = $mystate[1]; 
+        $currentState[1] = $mystate[0];
+            $mystate = $currentState ;
+        }
+        
+       else  if ($Stepaway2 == $min){
+            $currentState = $mystate;
+        $currentState[0] = $mystate[3]; 
+        $currentState[3] = $mystate[0];
+            $mystate = $currentState ;
+        
+
+        }
+        
+
+        
+
+         if($mystate == $goal){
+        $f = "found Goal";
+    break;
+
+        }else{
+            $f = "Goal not found !";
+        }
+    }
 
 
 
 
 
-           
+
+    if($key == 1){// 0 in potions 1 (0,2,4)
+        $fringe[]=0;
+        $fringe[]=2;
+        $fringe[]=4;
+
+        $currentState = $mystate;
+        $currentState[1] = $mystate[0]; 
+        $currentState[0] = $mystate[1];
+        for($zero = 0 ; $zero <= 8 ;$zero++){
+            if($currentState[$zero] != $goal[$zero]){
+                $Stepaway1++ ; 
+            }
+        }
+
+        $currentState = $mystate;
+        $currentState[1] = $mystate[2]; 
+        $currentState[2] = $mystate[1];
+        for($two = 0 ; $two <= 8 ;$two++){
+            if($currentState[$two] != $goal[$two]){
+                $Stepaway2++  ; // f(n) = 1 + 3  -> 
+            }
+        }
+        
+        $currentState = $mystate;
+        $currentState[1] = $mystate[4]; 
+        $currentState[4] = $mystate[1];
+        for($four = 0 ; $four <= 8 ;$four++){
+            if($currentState[$four] != $goal[$four]){
+                $Stepaway3 ++  ; // f(n)= 1 + 0 goal 
+            }
+        }
+
+       $min =  min($Stepaway1,$Stepaway2,$Stepaway3);
+
+        
+        
+
+       if($Stepaway1 == $min){
+        $currentState = $mystate;
+    $currentState[1] = $mystate[0]; 
+    $currentState[0] = $mystate[1];
+        $mystate = $currentState ;
+    }
+    
+   else  if ($Stepaway2 == $min){
+        $currentState = $mystate;
+    $currentState[1] = $mystate[2]; 
+    $currentState[2] = $mystate[1];
+        $mystate = $currentState ;
+    
+
+    }
+    
+    else if ($Stepaway3 == $min){
+    $currentState = $mystate;
+    $currentState[1] = $mystate[4]; 
+    $currentState[4] = $mystate[1];
+        $mystate = $currentState ;
+    }
+
+
+
+
+
+    
+
+     if($mystate == $goal){
+    $f = "found Goal";
+break;
+
+    }else{
+        $f = "Goal not found !";
+    }
+      
+
+
+    
+
+
+    }
+
+
+ 
         
 
            
