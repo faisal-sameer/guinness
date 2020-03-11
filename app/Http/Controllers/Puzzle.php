@@ -10,7 +10,7 @@ class Puzzle extends Controller
 
 	
 //	var $key = array_search(0,$mystate);
-    public function puzzle8( ){//bfs
+    public function BFS( ){//bfs
 		 $goal =    [1,2,3
 		,4,5,6,
 		7,8,0];
@@ -19,6 +19,7 @@ class Puzzle extends Controller
 		 ,7,8,6];
 		 $steps = 0 ;
 		 $bad = 0 ;
+		 
 		 
 		 $fringe = [];
 		 $depth = 0 ;
@@ -496,9 +497,9 @@ class Puzzle extends Controller
 		6,5,4,
 		3,2,1];
 
-		$mystate =[6,8,7,
-					0,5,4,
-					3,2,1];
+		$mystate =[1,2,3,
+					4,5,6,
+					7,0,8];
 		$steps = 0 ;
 		$bad = 0 ;
 		$step = " ";
