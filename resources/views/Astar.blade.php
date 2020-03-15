@@ -18,7 +18,8 @@ Opne node :
     Depth {{$keys}} [
       
     @foreach ($value as $values)
-    {{$values}}
+    {{$values}} 
+
     @endforeach
    ] <br>
 @endforeach

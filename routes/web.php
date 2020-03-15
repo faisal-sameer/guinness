@@ -34,7 +34,7 @@ Route::get('/BFS','Puzzle@BFS');
 
 Route::get('/DFS','Puzzle@DFS');
 
-Route::get('/Astar','InsertStu@Astar');
+Route::get('/Astar','AstarPuzzle@Astar');
 
 Route::get('/inputFialed','Barcode@show01');
 Route::post('/inputFialed','Barcode@inputFialed')->name('inputFialed');
